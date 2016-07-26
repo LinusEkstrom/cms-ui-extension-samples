@@ -1,8 +1,10 @@
+using EPiServer.Cms.Shell.UI.ObjectEditing.EditorDescriptors;
 using EPiServer.Core;
 using EPiServer.DataAnnotations;
 using EPiServer.Shell.ObjectEditing;
 using EPiServer.Templates.Alloy.Business.EditorDescriptors;
 using EPiServer.Web;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using UIExtensionSamples.Attributes;
 using UIExtensionSamples.EditorDescriptors;
@@ -13,7 +15,7 @@ namespace UIExtensionSamples.Models
         GUID = "D178950C-D20E-4A46-90BD-5338B2424746")]
     public class SamplePageTwo : SamplePageBase, SampleInterface
     {
-        #region SuggestionEditors
+        #region Suggestion Editors
 
         /// <summary>
         /// Example of how the SelectOne attribute can be used to get a single selection from
@@ -59,6 +61,13 @@ namespace UIExtensionSamples.Models
         [Display(GroupName = TabNames.CustomAttributes)]
         [AutoSuggestSelection(typeof(SampleSelectionQuery), AllowCustomValues = true)]
         public virtual string SelectionEditor2 { get; set; }
+
+        #endregion
+
+        #region List Editors
+
+        [EditorDescriptor(EditorDescriptorType = typeof(CollectionEditorDescriptor<Person>))]
+        public virtual IList<Person> Persons { get; set; }
 
         #endregion
 
