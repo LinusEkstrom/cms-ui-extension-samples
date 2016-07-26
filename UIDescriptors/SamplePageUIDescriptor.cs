@@ -1,18 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using EPiServer.Shell;
+﻿using EPiServer.Shell;
 using UIExtensionSamples.Models;
 
-namespace OctoberDemo2MVC.Business.UIExtensions.UIDescriptors
+namespace UIExtensionSamples.UIDescriptors
 {
     [UIDescriptorRegistration]
     public class SamplePageUIDescriptor : UIDescriptor<SamplePageOne>, IEditorDropBehavior
     {
         public SamplePageUIDescriptor()
-            : base("customcontenttypeicon")//This string matches a CSS class, either built in or a custom class defined in a style sheet
-        //configured to be loaded in the UI. See sample CSS in the end of this class.
+            : base("customcontenttypeicon")
+            //This string matches a CSS class, either built in or a custom class defined in a style sheet
+            //configured to be loaded in the UI. See sample CSS in the end of this class.
         {
             //We configure the system to load the "All properties views" when loading content of this type.
             DefaultView = CmsViewNames.AllPropertiesView;
