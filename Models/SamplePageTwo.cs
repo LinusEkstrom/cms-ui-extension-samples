@@ -1,14 +1,9 @@
-using System;
-using System.ComponentModel.DataAnnotations;
-using EPiServer;
 using EPiServer.Core;
 using EPiServer.DataAnnotations;
-using EPiServer.Framework.DataAnnotations;
 using EPiServer.Shell.ObjectEditing;
-using EPiServer.SpecializedProperties;
 using EPiServer.Templates.Alloy.Business.EditorDescriptors;
 using EPiServer.Web;
-using UIExtensionSamples;
+using System.ComponentModel.DataAnnotations;
 using UIExtensionSamples.Attributes;
 using UIExtensionSamples.EditorDescriptors;
 
@@ -18,64 +13,77 @@ namespace UIExtensionSamples.Models
         GUID = "D178950C-D20E-4A46-90BD-5338B2424746")]
     public class SamplePageTwo : SamplePageBase, SampleInterface
     {
-        #region CustomAttributes
+        #region SuggestionEditors
 
-        //Example of you SelectOne attribute can be used to get a single selection from
-        //a list of predefined items defined in the specified SelectionFactory.
+        /// <summary>
+        /// Example of how the SelectOne attribute can be used to get a single selection from
+        /// a list of predefined items defined in the specified SelectionFactory.
+        /// </summary>
         [SelectOne(SelectionFactoryType = typeof(SampleSelectionFactory))]
-        public virtual string Contacts { get; set; } 
+        public virtual string Contacts { get; set; }
 
-        //Here we have used the DRY principle to reduce code to define a specific attribute that extends
-        //SelectOne with a predefined selection factory.
+        /// <summary>
+        /// Here we have used the DRY principle to reduce code by defining a specific attribute that extends
+        /// SelectOne with a predefined selection factory.
+        /// </summary>
         [Display(GroupName = TabNames.CustomAttributes)]
         [ContactSelectionAttribute]
         public virtual string CustomCssClass { get; set; }
 
-        //SelectMany works the same as SelectOne but enables multiple selections.
+        /// <summary>
+        /// SelectMany works the same as SelectOne but enables the option to select multiple items.
+        /// </summary>
         [Display(GroupName = TabNames.CustomAttributes)]
         [SelectMany(SelectionFactoryType = typeof(SampleSelectionFactory))]
         public virtual string CustomCssClasses { get; set; }
 
-        //Sample showing how to generate selection from an Enum by creating a custom attribute.
+        /// <summary>
+        /// Sample showing how to generate selection from an Enum by creating a custom attribute.
+        /// </summary>
         [Display(GroupName = TabNames.CustomAttributes)]
-        [BackingType(typeof(PropertyNumber))]//I have reported a feature request to remove the need for this to dev team.
         [EnumAttribute(typeof(SampleEnum))]
-        public virtual SampleEnum Funkiness { get; set; }
+        public virtual SampleEnum EnumValue { get; set; }
 
-        //Prevent editing or hide properties when editing unless you are part of specific roles.
-        [Display(GroupName = TabNames.CustomAttributes)]
-        [PropertyEditRestriction(new string[] { "Administrators" })]
-        public virtual ContentReference RestrictedToEdit { get; set; }
-
-        #endregion
-
-        #region SuggestionEditors
-
-        //The editor has to select one of the predefined choices.
+        /// <summary>
+        /// This creates an editor that will suggest options for the editor.
+        /// The editor has to select one of the predefined choices.
+        /// </summary>
         [Display(GroupName = TabNames.CustomAttributes)]
         [AutoSuggestSelection(typeof(SampleSelectionQuery))]
         public virtual string SelectionEditor1 { get; set; }
 
-        //The editor can select one of the predefined choices but also enter custom values.
+        /// <summary>
+        /// This creates an editor that will suggest options for the editor.
+        /// The editor can select one of the predefined choices but also enter custom values.
+        /// </summary>
         [Display(GroupName = TabNames.CustomAttributes)]
         [AutoSuggestSelection(typeof(SampleSelectionQuery), AllowCustomValues = true)]
         public virtual string SelectionEditor2 { get; set; }
 
         #endregion
 
-        #region More
+        #region Custom attributes and editor descriptors
 
-        //This property shows how to create a category editor with a custom root node.
+        /// <summary>
+        /// Prevent editing or hide property when editing unless you are part of specific roles.
+        /// </summary>
+        [Display(GroupName = TabNames.CustomAttributes)]
+        [PropertyEditRestriction(new string[] { "Administrators" })]
+        public virtual ContentReference RestrictedToEdit { get; set; }
+
+        /// <summary>
+        ///// This property shows how to create a category editor with a custom root node.
+        /// </summary>
         [UIHint(CustomCategoryRootEditorDescriptor.CustomCategoryRoot)]
         public virtual CategoryList CustomCategories { get; set; }
+
+        //Additional features that can be shown in the UI:
 
         //Show ContainerPageUIDescriptor with custom icon and default view.
 
         //Show SiteMetadataExtender
 
-        //Custom View
-
-        //Tiny MCE settings in code
+        //Custom Content View
 
         //Drag and drop items into HTML editor
 

@@ -2,16 +2,19 @@
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 using EPiServer.Core;
+using EPiServer.Security;
 
 namespace UIExtensionSamples.Attributes
 {
+    /// <summary>
+    /// This sample shows a custom attribute that does two things:
+    /// Hides or disables a property when editing.
+    /// Enforces server side validation when saving data as well to prevent fake requests sending forged updates.
+    /// </summary>
     public class PropertyEditRestrictionAttribute : ValidationAttribute, IMetadataAware
     {
         public PropertyEditRestrictionAttribute(string[] allowedRoles)
         {
-            //This sample shows a custom attribute that does two things:
-            //Hides or disables a property when editing.
-            //Enforces server side validation when saving data as well to prevent fake requests sending forged updates.
             AllowedRoles = allowedRoles;
         }
 
@@ -27,7 +30,6 @@ namespace UIExtensionSamples.Attributes
                 }
             }
             //Comment row below to test validation when saving.
-
             //Show the property but make it read only
             metadata.IsReadOnly = true;
 
@@ -71,7 +73,7 @@ namespace UIExtensionSamples.Attributes
         {
             foreach (string role in AllowedRoles)
             {
-                if (EPiServer.Security.PrincipalInfo.CurrentPrincipal.IsInRole(role))
+                if (PrincipalInfo.CurrentPrincipal.IsInRole(role))
                 {
                     return true;
                 }

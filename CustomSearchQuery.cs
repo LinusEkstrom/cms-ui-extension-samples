@@ -6,7 +6,7 @@ using EPiServer.Core;
 using EPiServer.ServiceLocation;
 using EPiServer.Shell.ContentQuery;
 using EPiServer.Shell.Search;
-using EPiServer.Web.Routing;
+
 namespace EPiServer.Templates.Alloy.UIExtensions.CustomSearch
 {
     [ServiceConfiguration(typeof(IContentQuery))]

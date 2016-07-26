@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CustomView.aspx.cs" Inherits="UIExtensionSamples.CustomViews.CustomView" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CustomContentView.aspx.cs" Inherits="UIExtensionSamples.CustomContentViews.CustomView" %>
 
 <asp:Content ContentPlaceHolderID="FullRegion" runat="server">
 

@@ -2,10 +2,7 @@
 using EPiServer.Editor.TinyMCE;
 using EPiServer.Security;
 using EPiServer.ServiceLocation;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace UIExtensionSamples.PropertySettings
 {

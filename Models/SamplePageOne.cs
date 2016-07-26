@@ -1,10 +1,9 @@
-using System;
-using System.ComponentModel.DataAnnotations;
 using EPiServer;
 using EPiServer.Core;
 using EPiServer.DataAnnotations;
-using EPiServer.Shell.ObjectEditing;
 using EPiServer.Web;
+using System;
+using System.ComponentModel.DataAnnotations;
 using UIExtensionSamples.EditorDescriptors;
 using UIExtensionSamples.PropertySettings;
 
@@ -43,9 +42,8 @@ namespace UIExtensionSamples.Models
 
         #region Url
 
-        //For sites upgrading from EPiServer 7, you will have URL properties.
-        //This is also useful if you want to be able to store additional information in
-        //the URL, for instance [mediapath]?size=medium
+        // Using a URL property as a reference is useful if you want to be able to store 
+        // additional information in the URL, for instance [mediapath]?size=medium
 
         [Display(GroupName = TabNames.Url)]
         [UIHint(UIHint.MediaFile)]
@@ -73,25 +71,37 @@ namespace UIExtensionSamples.Models
 
         #region AllowedTypes
 
-        //Content Area restricted to TeaserBlocks only.
+        /// <summary>
+        /// You can use the AllowedTypes attribute to restrict what an editor can add to a content area.
+        /// This sample shows a content area only allowing SampleBlock.
+        /// </summary>
         [Display(GroupName = TabNames.AllowedTypes)]
         [CultureSpecific]
         [AllowedTypes(new Type[] { typeof(SampleBlock) })]
         public virtual ContentArea RestrictedToSampleBlock { get; set; }
 
-        #endregion
+        /// <summary>
+        /// You can use also configure the AllowedTypes attribute to reject content of certain types.
+        /// This sample shows a content area restricted for all blocks except TeaserBlock.
+        /// </summary>
+        [Display(GroupName = TabNames.AllowedTypes)]
+        [CultureSpecific]
+        [AllowedTypes(new Type[] { typeof(BlockData) }, new Type[] { typeof(SampleBlock) })]
+        public virtual ContentArea RestrictedToAllBlocksButSampleBlock { get; set; }
 
-        #region AllowedTypes for Base Types and Interfaces
 
-        //You can add restrictions for base types, but to be able to do this
-        //you need to add a UIDescriptor for the base type. See SitePageDataDescriptor.
+        /// <summary>
+        /// You can add restrictions for base types.
+        /// </summary>
         [Display(GroupName = TabNames.AllowedTypes)]
         [AllowedTypes(new Type[] { typeof(SamplePageBase) })]
-        public virtual ContentArea RestrictedToSamplePageBase { get; set; }
+        public virtual ContentArea RestrictedToSampleBaseClass { get; set; }
 
-        //Currently, interfaces are not supported out of the box.
-        //There is a work around though but it requires us to modify the UI descriptors.
-        //See UIDescriptorInitialization for an example to do this.
+        /// <summary>
+        /// You can add restrictions for interfaces as well, but to be able to do this
+        /// you need to add an UIDescriptor for the interface since Episerver does not do this automatically.
+        /// See SampleInterfaceUIDescriptor.
+        /// </summary> 
         [Display(GroupName = TabNames.AllowedTypes)]
         [AllowedTypes(new Type[] { typeof(SampleInterface) })]
         public virtual ContentArea RestrictedToSampleInterface { get; set; }
