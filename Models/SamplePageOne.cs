@@ -3,6 +3,7 @@ using EPiServer.Core;
 using EPiServer.DataAnnotations;
 using EPiServer.Web;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using UIExtensionSamples.EditorDescriptors;
 using UIExtensionSamples.PropertySettings;
@@ -59,6 +60,7 @@ namespace UIExtensionSamples.Models
 
         #endregion
 
+        
         #region CustomReferences
 
         //You can build your own content reference editors.
@@ -96,6 +98,11 @@ namespace UIExtensionSamples.Models
         [Display(GroupName = TabNames.AllowedTypes)]
         [AllowedTypes(new Type[] { typeof(SamplePageBase) })]
         public virtual ContentArea RestrictedToSampleBaseClass { get; set; }
+
+        [Display(GroupName = TabNames.AllowedTypes)]
+        [AllowedTypes(new Type[] { typeof(PageData) })]
+        public virtual IList<ContentReference> PageList { get; set; }
+
 
         /// <summary>
         /// You can add restrictions for interfaces as well, but to be able to do this

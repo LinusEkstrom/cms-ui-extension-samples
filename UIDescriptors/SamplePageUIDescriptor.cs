@@ -14,6 +14,8 @@ namespace UIExtensionSamples.UIDescriptors
             //We configure the system to load the "All properties views" when loading content of this type.
             DefaultView = CmsViewNames.AllPropertiesView;
 
+            LanguageKey = "MyKey";
+
             //You can turn off specific views for a type.
             DisabledViews = new string[] { CmsViewNames.OnPageEditView };
 

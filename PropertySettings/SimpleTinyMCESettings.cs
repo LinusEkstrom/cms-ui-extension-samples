@@ -19,13 +19,12 @@ namespace UIExtensionSamples.PropertySettings
         public override TinyMCESettings GetPropertySettings()
         {
             var settings = new TinyMCESettings();
-
-            var mainToolbar = new ToolbarRow(new List<string>() { "bold" });
+            var mainToolbar = new ToolbarRow(new List<string>() { TinyMCEButtons.Bold });
 
             if (PrincipalInfo.CurrentPrincipal.IsInRole("administrators"))
             {
                 //Chance to personalize.
-                mainToolbar.Buttons.Add("italic");
+                mainToolbar.Buttons.Add(TinyMCEButtons.Italic);
             }
 
             settings.ToolbarRows.Add(mainToolbar);

@@ -93,6 +93,7 @@ namespace UIExtensionSamples.Models
         //Show SiteMetadataExtender
 
         //Custom Content View
+        //TODO: Create MVC example for a custom view.
 
         //Drag and drop items into HTML editor
 

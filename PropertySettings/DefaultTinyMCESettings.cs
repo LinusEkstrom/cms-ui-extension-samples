@@ -20,7 +20,7 @@ namespace UIExtensionSamples.PropertySettings
         {
             var settings = new TinyMCESettings();
 
-            var mainToolbar = new ToolbarRow(new List<string>() { "bold" });
+            var mainToolbar = new ToolbarRow(new List<string>() { TinyMCEButtons.Bold });
 
             settings.ToolbarRows.Add(mainToolbar);
 
