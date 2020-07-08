@@ -10,7 +10,7 @@
 //using System.Collections.Generic;
 //using System.Linq;
 
-//namespace Episervercom.Site.Infrastructure.Migrations
+//namespace [Your].Site.Infrastructure.Migrations
 //{
 //    [ScheduledPlugIn(DisplayName = "Migrate Features To Capabilities Scheduled Job")]
 //    public class MigrateFeaturesToCapabilitiesScheduledJob : ScheduledJobBase
